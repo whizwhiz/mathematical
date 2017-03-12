@@ -14,26 +14,23 @@ import com.example.android.mathematical.database.AllStatsContract;
 import com.example.android.mathematical.database.AllStatsDbHelper;
 import com.example.android.mathematical.controller.Operands;
 
-
+/**
+ * This activity is for the display the answer to the sum, and inform the user if they are correct or
+ * wrong.
+ */
 public class AnswerActivity extends AppCompatActivity {
+
+
     private TextView timeTakenText;     // displays time taken to answer
     private TextView resultText;        // displays whether user is right or wrong
     private TextView sumLineText;       // displays the sum
     private TextView sumAnswerText;     // displays the answer to the sum
     private TextView usersAnswerText;   // displays user's answer if user was wrong
 
-    private String CORRECT_ANSWER   = "CORRECT!";
-    private String WRONG_ANSWER     = "WRONG!";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
-
-        // check if AnswerActivity start from a previous activity stopping (i.e. UserAnswerActivity).
-        // if this Extra exists it's going too be true.
-        boolean startFromStopActivity = getIntent().hasExtra(UserAnswerActivity.EXTRA_WAS_ACTIVITY_STOP);
-        if (startFromStopActivity) { moveTaskToBack(true); }
 
 
         // create reference to TextViews in Activity
@@ -65,18 +62,18 @@ public class AnswerActivity extends AppCompatActivity {
         boolean isUserCorrect = (usersAnswer == sumAnswer);
 
         // populate TextViews with there values
-        timeTakenText.setText(usersTime + " Seconds");  // covert double to String
+        timeTakenText.setText(usersTime + " " + getString(R.string.time_unit));  // covert double to String
         if (isUserCorrect) {                    // set correct/wrong text
-            resultText.setText(CORRECT_ANSWER);
+            resultText.setText(getString(R.string.correct_answer));
         }
         else {
-            resultText.setText(WRONG_ANSWER);
+            resultText.setText(getString(R.string.wrong_answer));
         }
         sumLineText.setText(Operands.sumToString(sumOperands, SumActivity.OPERATION));
-        sumAnswerText.setText(sumAnswer + "");
+        sumAnswerText.setText(Integer.toString(sumAnswer));
 
         if (!isUserCorrect) {
-            usersAnswerText.setText("Not " + usersAnswer);
+            usersAnswerText.setText(getString(R.string.not_number) + usersAnswer);
             usersAnswerText.setVisibility(View.VISIBLE);
         }
 
@@ -98,7 +95,7 @@ public class AnswerActivity extends AppCompatActivity {
         // insert the new row, returning the primary key value of new row
         long newRowID = db.insert(AllStatsContract.AllStatsEntry.TABLE_NAME, null, values);
 
-        Toast.makeText(getApplicationContext(), "rowID = " + newRowID, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "rowID = " + newRowID, Toast.LENGTH_SHORT).show();
 
         // Count sum number
     }
@@ -137,6 +134,15 @@ public class AnswerActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
+    }
 
     public void nextButtonClick(View v) {
         // start SumActivity

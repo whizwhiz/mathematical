@@ -17,16 +17,17 @@ import com.example.android.mathematical.util.Stopwatch;
  */
 public class UserAnswerActivity extends AppCompatActivity {
     // Declaring variables
+    private String TAG = this.getClass().getSimpleName(); // for Log.x()
+
     private EditText usersAnswerEditText;
     private TextView sumLineText;
     private int usersAnswer = -1;
     private Stopwatch stopwatch;
-    private boolean hasAnswer = false; // has the user answered
+    private boolean hasAnswered = false; // has the user answered
 
     // Key strings for storing and retrieving intent extras.
     public static final String EXTRA_USERS_ANSWER = "com.example.android.mathematical.USERS_ANSWER";
     public static final String EXTRA_USERS_TIME = "com.example.android.mathematical.USERS_TIME";
-    public static final String EXTRA_WAS_ACTIVITY_STOP = "com.example.android.mathematical.WAS_ACTIVITY_STOP";
 
 
     @Override
@@ -34,8 +35,11 @@ public class UserAnswerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_answer);
 
-        // initialise stopwatch
+        Log.i(TAG, "onCreate()");
+
+        // initialise variables
         stopwatch = new Stopwatch();
+
         // start stopwatch
         stopwatch.start();
 
@@ -43,13 +47,13 @@ public class UserAnswerActivity extends AppCompatActivity {
         usersAnswerEditText     = (EditText) findViewById(R.id.users_answer_edittext);
         sumLineText             = (TextView) findViewById(R.id.sum_line_text);
 
-        // Empty text this TextView
+        // Empty text in this TextView
         usersAnswerEditText.setText("");
 
         // Retrieve the sumOperands from intent (SumActivity)
         final int[] sumOperands = getIntent().getIntArrayExtra(SumActivity.EXTRA_SUM_OPERANDS);
 
-        // Display sum line in this TextView
+        // Display the sum line in this TextView
         sumLineText.setText(Operands.sumToString(sumOperands, SumActivity.OPERATION));
 
         // Key listener to detect ENTER key being pressed
@@ -62,14 +66,14 @@ public class UserAnswerActivity extends AppCompatActivity {
                     // parse users answer to an integer
                     usersAnswer = Integer.parseInt(usersAnswerEditText.getText().toString());
 
-                    hasAnswer = true; //
+                    hasAnswered = true; //
 
                     // stop timer
                     stopwatch.stop();
 
                     // start the AnswerActivity
                     Intent intent = new Intent(getApplicationContext(), AnswerActivity.class);
-                    // put the neccesary variables in Extras
+                    // put the necessary variables in Extras
                     intent.putExtra(EXTRA_USERS_ANSWER, usersAnswer);
                     intent.putExtra(EXTRA_USERS_TIME, stopwatch.getElapsedTime());
                     intent.putExtra(SumActivity.EXTRA_SUM_OPERANDS, sumOperands);
@@ -84,20 +88,44 @@ public class UserAnswerActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.i(TAG, "onStart() ");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.i(TAG, "onResume() ");
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
 
-        // TODO: Send user to an new Activity if they leave this one (onStop())
-        // If uses leaves this activity (onStop()) then to avoid resuming back to it, start another
-        // Activity.
-        Log.i("UserAnswerActivity", "triggered onStop. hasAnswer = " + hasAnswer);
+        Log.i(TAG, "onStop()");
 
-        // if user hasn't answered the sum that means user left app (onStop())
-        if (!hasAnswer) {
-            Intent intent = new Intent(getApplicationContext(), AnswerActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra(EXTRA_WAS_ACTIVITY_STOP, true);
-            startActivity(intent);
-        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        Log.i(TAG, "onRestart()");
+
+        /* Do not resume this activity if user leaves screen.
+         */
+        Intent intent = new Intent(getApplicationContext(), AnswerActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(getApplicationContext(), AnswerActivity.class);
+        startActivity(intent);
     }
 }

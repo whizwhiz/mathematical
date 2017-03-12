@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.android.mathematical.database.AllStatsContract.AllStatsEntry;
+
 /**
  * Created by Matthew Johnson on 12/03/2017.
  *
@@ -18,12 +20,12 @@ public class AllStatsDbHelper extends SQLiteOpenHelper {
      */
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + AllStatsContract.AllStatsEntry.TABLE_NAME + " (" +
-                    AllStatsContract.AllStatsEntry._ID + " INTEGER PRIMARY KEY," +
-                    AllStatsContract.AllStatsEntry.COLUMN_NAME_1ST_OPERAND + " INTEGER, " +
-                    AllStatsContract.AllStatsEntry.COLUMN_NAME_2ND_OPERAND + " INTEGER," +
-                    AllStatsContract.AllStatsEntry.COLUMN_NAME_USERS_ANSWER + " INTEGER," +
-                    AllStatsContract.AllStatsEntry.COLUMN_NAME_ANSWER + " INTEGER," +
-                    AllStatsContract.AllStatsEntry.COLUMN_NAME_TIME + " REAL)";
+                    AllStatsEntry._ID                       + " INTEGER PRIMARY KEY," +
+                    AllStatsEntry.COLUMN_NAME_1ST_OPERAND   + " INTEGER, " +
+                    AllStatsEntry.COLUMN_NAME_2ND_OPERAND   + " INTEGER," +
+                    AllStatsEntry.COLUMN_NAME_USERS_ANSWER  + " INTEGER," +
+                    AllStatsEntry.COLUMN_NAME_ANSWER        + " INTEGER," +
+                    AllStatsEntry.COLUMN_NAME_TIME          + " REAL)";
 
     /**
      * Statement for deleting the table that stores all the stats.

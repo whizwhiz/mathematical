@@ -4,6 +4,11 @@
 
     <string name="start_button">Start</string>
 
-    <string name="last_operand_time_delay">750</string>
+    <string name="correct_answer">CORRECT!</string>
+    <string name="wrong_answer">WRONG!</string>
+    <string name="time_unit">Seconds</string>
+    <string name="not_number">Not </string>
+
+    <integer name="last_operand_time_delay">750</integer>
 
 </resources>

@@ -33,7 +33,7 @@ public class Stopwatch {
         double elapsed;
 
         if (running) {
-            elapsed = ((System.currentTimeMillis() - stopTime) / 1000.0);
+            elapsed = ((System.currentTimeMillis() - startTime) / 1000.0);
         }
         else {
             elapsed = ((stopTime - startTime) / 1000.0);

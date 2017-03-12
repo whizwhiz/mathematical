@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         // the next screen the app reverts back to this MainActivity upon resuming. Now a new sum
         // reveal can be displayed from MainActivity start button instead of resuming this intent
         // and giving the user extra time to answer.
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
 
     }
