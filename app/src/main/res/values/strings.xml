@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mathematical</string>
+    <string name="title_activity_sum">SumActivity</string>
+
+    <string name="start_button">Start</string>
+
+    <string name="last_operand_time_delay">750</string>
+
+</resources>

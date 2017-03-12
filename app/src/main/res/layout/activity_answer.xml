@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.mathematical.AnswerActivity">
+
+    <TextView
+        android:id="@+id/time_taken_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="00.000"
+        android:gravity="right" />
+
+    <TextView
+        android:id="@+id/result_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="CORRECT/WRONG"
+        android:textSize="42sp" />
+
+    <TextView
+        android:id="@+id/sum_line_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0 x 0 = 0"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/sum_answer_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="180sp" />
+
+    <TextView
+        android:id="@+id/users_answer_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Not 0"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/next_button"
+        android:onClick="nextButtonClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/end_button"
+        android:onClick="endButtonClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="End" />
+
+
+</LinearLayout>
