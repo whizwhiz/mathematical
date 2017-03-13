@@ -147,8 +147,9 @@ public class AnswerActivity extends AppCompatActivity {
     public void nextButtonClick(View v) {
         // start SumActivity
         Intent intent = new Intent(getApplicationContext(), SumActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
+        finish();
     }
 
     public void endButtonClick(View v) {

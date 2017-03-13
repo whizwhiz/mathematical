@@ -3,12 +3,18 @@
     <string name="title_activity_sum">SumActivity</string>
 
     <string name="start_button">Start</string>
+    <string name="next_button">Next</string>
+    <string name="end_button">End</string>
+    <string name="continue_button">Continue</string>
 
     <string name="correct_answer">CORRECT!</string>
     <string name="wrong_answer">WRONG!</string>
     <string name="time_unit">Seconds</string>
     <string name="not_number">Not </string>
+    <string name="continue_message">Welcome back</string>
+    <string name="continue_from_user_answer_message">Do you want to continue</string>
 
+    <!-- INTEGERS - move to own xml -->
     <integer name="last_operand_time_delay">750</integer>
 
 </resources>

@@ -28,6 +28,8 @@ public class UserAnswerActivity extends AppCompatActivity {
     // Key strings for storing and retrieving intent extras.
     public static final String EXTRA_USERS_ANSWER = "com.example.android.mathematical.USERS_ANSWER";
     public static final String EXTRA_USERS_TIME = "com.example.android.mathematical.USERS_TIME";
+    public static final String EXTRA_CONTINUE_MESSAGE = "com.example.android.mathematical.CONTINUE_MESSAGE";
+
 
 
     @Override
@@ -79,6 +81,7 @@ public class UserAnswerActivity extends AppCompatActivity {
                     intent.putExtra(SumActivity.EXTRA_SUM_OPERANDS, sumOperands);
                     //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); // may not need
                     startActivity(intent);
+                    finish();
 
                     return true;
                 }
@@ -115,17 +118,20 @@ public class UserAnswerActivity extends AppCompatActivity {
 
         Log.i(TAG, "onRestart()");
 
-        /* Do not resume this activity if user leaves screen.
+        /* Do not resume this activity since user left screen.
          */
-        Intent intent = new Intent(getApplicationContext(), AnswerActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ContinueActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(getApplicationContext(), AnswerActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ContinueActivity.class);
+        intent.putExtra(EXTRA_CONTINUE_MESSAGE, getString(R.string.continue_from_user_answer_message));
         startActivity(intent);
+        finish();
     }
 }

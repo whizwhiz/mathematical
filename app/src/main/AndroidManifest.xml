@@ -19,6 +19,7 @@
         <activity android:name=".SumActivity" />
         <activity android:name=".UserAnswerActivity" />
         <activity android:name=".AnswerActivity" />
+        <activity android:name=".ContinueActivity"></activity>
     </application>
 
 </manifest>

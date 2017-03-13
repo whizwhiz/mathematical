@@ -91,14 +91,14 @@ public class SumActivity extends AppCompatActivity {
 
         Log.i(TAG, "onRestart");
 
-        // If user leaves this activity then returns and the full sum hasn't been revealed do not
+        // If user leaves this activity then returns and the full sum has been revealed do not
         // resume start another activity.
         // TODO: 13/03/2017 Change this if condition to a boolean variable
         if (operandCount == sumOperands.length) {
             // Start another activity
-            Intent intent = new Intent(getApplicationContext(), AnswerActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ContinueActivity.class);
             startActivity(intent);
-
+            finish();
         }
     }
 
@@ -120,6 +120,7 @@ public class SumActivity extends AppCompatActivity {
             // resuming this activity and giving them extra time to answer.
             //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
+            finish();
         }
     };
 
